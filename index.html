@@ -1,146 +1,166 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ValTax Assist - Compliance App</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ValTax Assist — Valenzuela</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#0f172a">
 </head>
 <body>
-  <header>
-    <h1>ValTax Assist</h1>
-    <p>Tax Compliance Assistant for Valenzuela</p>
-    <nav>
-      <input type="text" id="search" placeholder="Search features...">
-      <ul>
-        <li><a href="#" data-page="calendar">Compliance Calendar</a></li>
-        <li><a href="#" data-page="quicklinks">Quick Links & Guides</a></li>
-        <li><a href="#" data-page="troubleshooting">Troubleshooting</a></li>
-        <li><a href="#" data-page="progress">Progress Tracker</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">VT</div>
+        <div>
+          <div class="app-title">ValTax Assist</div>
+          <div class="app-sub">Valenzuela • Tax Compliance Assistant</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="search">
+          <input id="globalSearch" placeholder="Search guides, troubleshooting, deadlines..." />
+        </div>
+        <button id="installBtn" class="btn small">Install</button>
+      </div>
+    </header>
 
-  <main>
-    <!-- Calendar Page -->
-    <section id="calendar" class="page active">
-      <h2>Compliance Calendar</h2>
-      <form id="taskForm">
-        <input type="text" id="taskName" placeholder="Enter task name" required>
-        <input type="date" id="taskDate" required>
-        <button type="submit">Add Task</button>
-      </form>
-      <ul id="taskList"></ul>
-    </section>
+    <div class="layout">
+      <aside class="sidebar">
+        <nav>
+          <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
+          <a href="#" class="nav-link" data-page="calendar">Compliance Calendar</a>
+          <a href="#" class="nav-link" data-page="quicklinks">Quick Links</a>
+          <a href="#" class="nav-link" data-page="guides">Guides</a>
+          <a href="#" class="nav-link" data-page="troubleshoot">Troubleshooting</a>
+          <a href="#" class="nav-link" data-page="progress">Progress Tracker</a>
+          <a href="#" class="nav-link" data-page="help">Help & Contact</a>
+        </nav>
 
-    <!-- Quick Links -->
-    <section id="quicklinks" class="page">
-      <h2>Quick Links & Guides</h2>
-      <ul>
-        <li><a href="#ebirforms">eBIRForms</a></li>
-        <li><a href="#efps">eFPS</a></li>
-        <li><a href="#eafs">eAFS</a></li>
-        <li><a href="#orus">ORUS</a></li>
-      </ul>
+        <div class="sidebar-section">
+          <div class="section-title">Bookmarks</div>
+          <div id="bookmarks" class="bookmarks small muted">No bookmarks</div>
+        </div>
+      </aside>
 
-      <article id="ebirforms">
-        <h3>Guide to eBIRForms</h3>
-        <ol>
-          <li>Download and install the latest eBIRForms package from the BIR website.</li>
-          <li>Open the application and select the appropriate form (e.g., 1701, 1702).</li>
-          <li>Fill out taxpayer details such as TIN, RDO code, and taxpayer name.</li>
-          <li>Input income, deductions, and tax due amounts carefully.</li>
-          <li>Click "Validate" to check for errors before submission.</li>
-          <li>Submit online directly through the app or save as a file to upload later.</li>
-          <li>Print or save the email confirmation for your records.</li>
-        </ol>
-      </article>
+      <main class="main">
+        <!-- Dashboard -->
+        <section id="dashboard" class="page">
+          <div class="row">
+            <div class="card w-2">
+              <div class="card-header"><h3>Upcoming Deadlines</h3></div>
+              <div id="upcomingDeadlines" class="card-body muted">No deadlines yet</div>
+            </div>
+            <div class="card w-1">
+              <div class="card-header"><h3>Shortcuts</h3></div>
+              <div class="card-body">
+                <div class="grid">
+                  <button class="btn block" data-open="calendar">Calendar</button>
+                  <button class="btn block" data-open="quicklinks">Quick Links</button>
+                  <button class="btn block" data-open="guides">Guides</button>
+                  <button class="btn block" data-open="progress">Progress Tracker</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <article id="efps">
-        <h3>Guide to eFPS</h3>
-        <ol>
-          <li>Visit the <a href="https://efps.bir.gov.ph" target="_blank">eFPS website</a>.</li>
-          <li>Log in with your registered TIN and password.</li>
-          <li>Select the applicable form (VAT, ITR, withholding tax, etc.).</li>
-          <li>Fill out the form fields as required.</li>
-          <li>Validate and submit the form.</li>
-          <li>Proceed to payment by selecting your enrolled bank.</li>
-          <li>Save and print the payment confirmation for compliance proof.</li>
-        </ol>
-      </article>
+        <!-- Calendar -->
+        <section id="calendar" class="page" style="display:none">
+          <div class="card">
+            <div class="card-header"><h3>Compliance Calendar</h3></div>
+            <div class="card-body">
+              <div id="calendarList"></div>
+              <div class="row" style="margin-top:12px">
+                <button id="addObligationBtn" class="linkbtn">Add obligation</button>
+                <button id="addPersonalBtn" class="linkbtn">Add personal deadline</button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <article id="eafs">
-        <h3>Guide to eAFS</h3>
-        <ol>
-          <li>Go to the <a href="https://eafs.bir.gov.ph" target="_blank">eAFS portal</a>.</li>
-          <li>Log in with your eFPS credentials.</li>
-          <li>Prepare your scanned copies of financial statements, receipts, and attachments.</li>
-          <li>Upload files according to the required categories (FS, QAP, SAWT, etc.).</li>
-          <li>Confirm upload and check status in the dashboard.</li>
-          <li>Download the reference number and retain it as proof of submission.</li>
-        </ol>
-      </article>
+        <!-- Quick Links -->
+        <section id="quicklinks" class="page" style="display:none">
+          <div class="card">
+            <div class="card-header"><h3>Quick Links</h3></div>
+            <div class="card-body">
+              <div class="list-item">
+                <div><strong>eBIRForms</strong><div class="small muted">Desktop forms package</div></div>
+                <div><button class="linkbtn openGuideBtn" data-key="eBIRForms">Open Guide</button> <a class="linkbtn" href="https://www.bir.gov.ph/index.php/eservices/ebirforms.html" target="_blank" rel="noopener">Open Site</a></div>
+              </div>
+              <div class="list-item">
+                <div><strong>eFPS</strong><div class="small muted">Online filing & payment</div></div>
+                <div><button class="linkbtn openGuideBtn" data-key="eFPS">Open Guide</button> <a class="linkbtn" href="https://efps.bir.gov.ph" target="_blank" rel="noopener">Open Site</a></div>
+              </div>
+              <div class="list-item">
+                <div><strong>eAFS</strong><div class="small muted">Upload financial statements</div></div>
+                <div><button class="linkbtn openGuideBtn" data-key="eAFS">Open Guide</button> <a class="linkbtn" href="https://eafs.bir.gov.ph" target="_blank" rel="noopener">Open Site</a></div>
+              </div>
+              <div class="list-item">
+                <div><strong>ORUS</strong><div class="small muted">Register & update</div></div>
+                <div><button class="linkbtn openGuideBtn" data-key="ORUS">Open Guide</button> <a class="linkbtn" href="https://orus.bir.gov.ph" target="_blank" rel="noopener">Open Site</a></div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <article id="orus">
-        <h3>Guide to ORUS</h3>
-        <ol>
-          <li>Visit the <a href="https://orus.bir.gov.ph" target="_blank">ORUS portal</a>.</li>
-          <li>Create an account using your TIN and registered email.</li>
-          <li>Verify your email and log in.</li>
-          <li>Select the type of online registration (e.g., ATP, COR updates).</li>
-          <li>Fill in the required fields and upload supporting documents.</li>
-          <li>Submit the application and wait for confirmation via email.</li>
-          <li>Download the approved certificate/document once processed.</li>
-        </ol>
-      </article>
-    </section>
+        <!-- Guides -->
+        <section id="guides" class="page" style="display:none">
+          <div class="card">
+            <div class="card-header"><h3>Guides — Handbook</h3></div>
+            <div class="card-body" id="guidesList"></div>
+            <div id="guideDetail" style="margin-top:12px"></div>
+          </div>
+        </section>
 
-    <!-- Troubleshooting -->
-    <section id="troubleshooting" class="page">
-      <h2>Troubleshooting Common Issues</h2>
+        <!-- Troubleshooting -->
+        <section id="troubleshoot" class="page" style="display:none">
+          <div class="card">
+            <div class="card-header"><h3>Troubleshooting</h3></div>
+            <div class="card-body" id="troubleshootContent"></div>
+          </div>
+        </section>
 
-      <h3>eBIRForms Issues</h3>
-      <ul>
-        <li><strong>Problem:</strong> App won't install.<br><strong>Fix:</strong> Ensure Java is updated. Download latest version from BIR site.</li>
-        <li><strong>Problem:</strong> Validation errors.<br><strong>Fix:</strong> Double-check TIN and RDO codes. Use official taxpayer info.</li>
-      </ul>
+        <!-- Progress Tracker -->
+        <section id="progress" class="page" style="display:none">
+          <div class="card">
+            <div class="card-header"><h3>Progress Tracker</h3></div>
+            <div class="card-body">
+              <div class="task-row">
+                <input id="taskName" placeholder="Task name" />
+                <input id="taskDue" type="date" />
+                <select id="taskPriority"><option>High</option><option>Medium</option><option>Low</option></select>
+                <button id="addTaskBtn" class="btn">Add</button>
+              </div>
+              <div id="taskArea" style="margin-top:12px"></div>
+              <div style="margin-top:12px">
+                <button id="exportExcel" class="btn">Export Dashboard (.xlsx)</button>
+                <button id="exportCSV" class="linkbtn">Export CSV</button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <h3>eFPS Issues</h3>
-      <ul>
-        <li><strong>Problem:</strong> Cannot log in.<br><strong>Fix:</strong> Reset password via "Forgot Password" or contact RDO eFPS helpdesk.</li>
-        <li><strong>Problem:</strong> Payment not reflecting.<br><strong>Fix:</strong> Check bank enrollment status; contact bank support if delayed.</li>
-      </ul>
+        <!-- Help -->
+        <section id="help" class="page" style="display:none">
+          <div class="card">
+            <div class="card-header"><h3>Help & Contact</h3></div>
+            <div class="card-body">
+              <p><strong>BIR National Hotline:</strong> (02) 8538-3200</p>
+              <p><strong>RDO 27 — Valenzuela</strong><br/>Phone: (02) 8789-XXXX (sample)</p>
+              <p><a class="linkbtn" href="https://www.google.com/maps/search/BIR+Valenzuela+City" target="_blank" rel="noopener">Open in Google Maps</a></p>
+              <h4>Mini FAQ</h4>
+              <p class="small muted"><strong>Where to pay offline?</strong> Visit authorized agent banks (AAB) or the RDO.</p>
+            </div>
+          </div>
+        </section>
 
-      <h3>eAFS Issues</h3>
-      <ul>
-        <li><strong>Problem:</strong> Upload fails.<br><strong>Fix:</strong> Compress files into .zip and ensure under size limit.</li>
-        <li><strong>Problem:</strong> Missing attachments.<br><strong>Fix:</strong> Follow correct naming convention and re-upload files.</li>
-      </ul>
+        <div class="footer muted">© 2025 ValTax Assist — For guidance only. Verify with BIR.</div>
+      </main>
+    </div>
+  </div>
 
-      <h3>ORUS Issues</h3>
-      <ul>
-        <li><strong>Problem:</strong> Registration not saving.<br><strong>Fix:</strong> Use updated browser (Chrome/Edge) and clear cache.</li>
-        <li><strong>Problem:</strong> Email verification not received.<br><strong>Fix:</strong> Check spam folder or request resend from ORUS portal.</li>
-      </ul>
-    </section>
-
-    <!-- Progress Tracker -->
-    <section id="progress" class="page">
-      <h2>Progress Tracker</h2>
-      <form id="taskForm">
-        <input type="text" id="taskName" placeholder="Task name" required>
-        <input type="date" id="taskDate" required>
-        <button type="submit">Add Task</button>
-      </form>
-      <ul id="taskList"></ul>
-      <p>(Later this will include charts and reports)</p>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 ValTax Assist | For educational purposes</p>
-  </footer>
-
-  <script src="js/app.js"></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>
