@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ValTax Assist – Valenzuela</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>ValTax Assist</h1>
+    <nav>
+      <input type="text" id="searchBar" placeholder="Search guides, troubleshooting...">
+      <ul>
+        <li><a href="#" onclick="showPage('calendar')">Compliance Calendar</a></li>
+        <li><a href="#" onclick="showPage('guides')">Guides</a></li>
+        <li><a href="#" onclick="showPage('troubleshooting')">Troubleshooting</a></li>
+        <li><a href="#" onclick="showPage('links')">Quick Links</a></li>
+        <li><a href="#" onclick="showPage('tracker')">Progress Tracker</a></li>
+        <li><a href="#" onclick="showPage('contact')">Help & Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="mainContent">
+    <section id="calendar" class="page">
+      <h2>Compliance Calendar</h2>
+      <p>Add deadlines, mark filed, and stay on track.</p>
+      <div id="calendarContainer"></div>
+      <button onclick="addDeadline()">+ Add Personal Deadline</button>
+    </section>
+
+    <section id="guides" class="page hidden">
+      <h2>Step-by-Step Guides</h2>
+      <p>Select a service:</p>
+      <ul>
+        <li><a href="#" onclick="openGuide('orus')">ORUS</a></li>
+        <li><a href="#" onclick="openGuide('efps')">eFPS</a></li>
+        <li><a href="#" onclick="openGuide('ebir')">eBIRForms</a></li>
+        <li><a href="#" onclick="openGuide('eafs')">eAFS</a></li>
+      </ul>
+      <div id="guideContent"></div>
+    </section>
+
+    <section id="troubleshooting" class="page hidden">
+      <h2>Troubleshooting</h2>
+      <div id="troubleshootingContent"></div>
+    </section>
+
+    <section id="links" class="page hidden">
+      <h2>Quick Links</h2>
+      <ul>
+        <li><a href="https://orus.bir.gov.ph" target="_blank">ORUS</a></li>
+        <li><a href="https://efps.bir.gov.ph" target="_blank">eFPS</a></li>
+        <li><a href="https://www.bir.gov.ph/index.php/ebirforms" target="_blank">eBIRForms</a></li>
+        <li><a href="https://eafs.bir.gov.ph" target="_blank">eAFS</a></li>
+      </ul>
+    </section>
+
+    <section id="tracker" class="page hidden">
+      <h2>Progress Tracker</h2>
+      <div id="taskList"></div>
+      <button onclick="addTask()">+ Add Task</button>
+      <button onclick="exportToExcel()">📊 Export Dashboard</button>
+    </section>
+
+    <section id="contact" class="page hidden">
+      <h2>Help & Contact</h2>
+      <p>RDO 27 – Valenzuela City</p>
+      <p>BIR Hotline: 8538-3200</p>
+      <p>Email: contact_us@bir.gov.ph</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 ValTax Assist | For Valenzuela taxpayers</p>
+  </footer>
+</body>
+</html>
